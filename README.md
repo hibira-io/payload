@@ -71,7 +71,7 @@ The event is `change`:
 
 `operation` is `create`, `update` or `delete`. By default the event carries
 no document fields; list the ones you want in `fields`. Channels are public,
-so only list fields any visitor may see. Data larger than 10 KB is left out
+so only list fields any visitor may see. Data larger than 4 KB (the free plan's limit) is left out
 and `truncated: true` is set.
 
 With drafts on, events go out only when the published content changes:

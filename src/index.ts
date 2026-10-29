@@ -58,8 +58,8 @@ export interface HibiraPluginOptions {
   client?: Pick<Pusher, 'trigger'>;
 }
 
-/** Hibira refuses events larger than this. */
-const MAX_DATA = 10 * 1024;
+/** Event data up to this many bytes fits every plan, the free plan (4 KB) included. */
+const MAX_DATA = 4 * 1024;
 
 type Sender = (channels: string[], data: ChangeEvent, log: Logger) => Promise<void>;
 type Logger = { error: (obj: unknown, msg?: string) => void };
@@ -173,7 +173,7 @@ function event(
   if (doc?._status === 'draft' || doc?._status === 'published') data.status = doc._status;
   if (doc && o.fields?.length) {
     data.doc = Object.fromEntries(o.fields.filter((f) => f in doc).map((f) => [f, doc[f]]));
-    if (JSON.stringify(data).length > MAX_DATA) {
+    if (new TextEncoder().encode(JSON.stringify(data)).length > MAX_DATA) {
       delete data.doc;
       data.truncated = true;
     }

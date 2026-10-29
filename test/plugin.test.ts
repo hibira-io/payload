@@ -38,9 +38,9 @@ describe('hibiraPlugin', () => {
     expect((trigger.mock.calls[0][2] as any).doc).not.toHaveProperty('secret');
   });
 
-  it('drops the fields when the event would pass 10 KB', async () => {
+  it('drops the fields when the event would pass 4 KB (bytes, not characters)', async () => {
     const { trigger, coll, req } = setup({ collections: { posts: { fields: ['title'] } } });
-    await coll('posts').hooks!.afterChange!.at(-1)!({ doc: { id: 1, title: 'x'.repeat(11000) }, operation: 'update', context: {}, req } as any);
+    await coll('posts').hooks!.afterChange!.at(-1)!({ doc: { id: 1, title: '東'.repeat(1500) }, operation: 'update', context: {}, req } as any);
     expect(trigger.mock.calls[0][2]).toMatchObject({ truncated: true });
     expect(trigger.mock.calls[0][2]).not.toHaveProperty('doc');
   });
