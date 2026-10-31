@@ -1,5 +1,7 @@
 # @hibira-io/payload
 
+![@hibira-io/payload](.github/cover.jpg)
+
 [![npm](https://img.shields.io/npm/v/@hibira-io/payload)](https://www.npmjs.com/package/@hibira-io/payload)
 [![ci](https://github.com/hibira-io/payload/actions/workflows/ci.yml/badge.svg)](https://github.com/hibira-io/payload/actions/workflows/ci.yml)
 
