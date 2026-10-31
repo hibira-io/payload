@@ -1,6 +1,6 @@
 {
   "name": "@hibira-io/payload",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Live content updates for Payload CMS on Hibira (Pusher-compatible): publish, update and delete events from collections and globals, and a Next.js component that refreshes the page when its content changes.",
   "license": "MIT",
   "type": "module",
